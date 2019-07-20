@@ -1,7 +1,22 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { Store } from 'redux';
+import { RootState } from './reducers/types';
+import { DashboardContainer } from './components/Dashboard/DashboardContainer';
 
-const App: React.FC = () => {
-  return <div>Hello</div>;
+interface Props {
+  store: Store<RootState>;
+}
+
+const App: React.FC<Props> = ({ store }) => {
+  return (
+    <Provider store={store}>
+      <Router>
+        <Route path="/" component={DashboardContainer} />
+      </Router>
+    </Provider>
+  );
 };
 
 export default App;

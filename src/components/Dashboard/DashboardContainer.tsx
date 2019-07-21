@@ -1,8 +1,7 @@
 import React, { Dispatch, PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { RootState } from '../../reducers/types';
-import { AnyAction } from 'redux';
-import { getRequest } from '../../api';
+import { Button } from 'antd';
 import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { REQUEST_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
 
@@ -22,7 +21,11 @@ class DashBoardContainerInner extends PureComponent<Props, State> {
   async componentDidMount() {}
 
   public render() {
-    return <div>Hello</div>;
+    return (
+      <div>
+        Hello <Button type="primary">Button</Button>
+      </div>
+    );
   }
 }
 

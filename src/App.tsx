@@ -1,10 +1,10 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import { Store } from 'redux';
 import { DashboardContainer } from './components/Dashboard/DashboardContainer';
-import { RootState } from './reducers/types';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';
+import { RootState } from './reducers/types';
 
 interface Props {
   store: Store<RootState>;

@@ -1,19 +1,22 @@
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
 import { AgGridReact } from 'ag-grid-react';
+import produce from 'immer';
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { REQUEST_NEW_ORDER } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
-import { Order, OrderType } from '../../reducers/orders/types';
+import { CurrencyPair } from '../../reducers/currencyPairs/types';
+import { Order, OrderSide, OrderType } from '../../reducers/orders/types';
+import { getCurrencyPairs, getOrdersSelector } from '../../reducers/selectors';
 import { RootState } from '../../reducers/types';
-import { getOrdersSelector } from '../../selectors';
+import { NewOrderEntry } from './NewOrderEntry/NewOrderEntry';
 
 interface OwnProps {}
 
 interface StateProps {
   orders: Order[];
+  currencyPairs: () => CurrencyPair[];
 }
 
 interface DispatchProps {
@@ -27,8 +30,17 @@ interface Column {
   field: string;
 }
 
+export interface NewOrder {
+  pair?: string;
+  side: OrderSide;
+  type: OrderType;
+  quantity?: number;
+  limit?: number;
+}
+
 interface State {
   columns: Column[];
+  newOrder: NewOrder;
 }
 
 class OrdersTableContainerInner extends Component<Props, State> {
@@ -40,12 +52,44 @@ class OrdersTableContainerInner extends Component<Props, State> {
       { headerName: 'Limit', field: 'limit' },
       { headerName: 'Status', field: 'status' },
     ],
+    newOrder: {
+      pair: undefined,
+      side: OrderSide.Buy,
+      type: OrderType.Market,
+      quantity: undefined,
+      limit: undefined,
+    },
+  };
+
+  public onSelectCurrencyPair = (pair: string) => {
+    this.setState(
+      produce(draft => {
+        draft.newOrder.pair = pair;
+      })
+    );
+  };
+
+  public onSelectSide = (side: OrderSide) => {
+    this.setState(
+      produce(draft => {
+        draft.newOrder.side = side;
+      })
+    );
   };
 
   public render() {
+    console.log('render', this.props);
+    const { orders, currencyPairs } = this.props;
     return (
-      <div style={{ height: '150px', width: '600px' }} className="ag-theme-balham">
-        <AgGridReact columnDefs={this.state.columns} rowData={this.props.orders} />
+      <div style={{ width: '100%', height: 500 }} className="ag-theme-balham">
+        <NewOrderEntry
+          orderCount={orders.length}
+          currencyPairs={currencyPairs()}
+          onSelectCurrencyPair={this.onSelectCurrencyPair}
+          onSelectSide={this.onSelectSide}
+          newOrder={this.state.newOrder}
+        />
+        <AgGridReact columnDefs={this.state.columns} rowData={orders} />
       </div>
     );
   }
@@ -53,6 +97,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   orders: getOrdersSelector(state),
+  currencyPairs: () => getCurrencyPairs(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<OrdersActionTypes>) => ({

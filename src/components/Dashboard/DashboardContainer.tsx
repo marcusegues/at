@@ -32,7 +32,15 @@ class DashBoardContainerInner extends Component<Props> {
 
   public render() {
     return (
-      <div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          marginLeft: 20,
+          marginRight: 20,
+          width: 800,
+        }}
+      >
         <OrdersTableContainer />
       </div>
     );

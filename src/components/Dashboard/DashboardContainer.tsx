@@ -2,7 +2,7 @@ import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import { REQUEST_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
 import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
-import { RECEIVE_SUCCESS_FETCH_ORDERS } from '../../actions/orders';
+import { RECEIVE_SUCCESS_FETCH_ORDERS, REQUEST_FETCH_ORDERS } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
 import { Order } from '../../reducers/orders/types';
 import { RootState } from '../../reducers/types';
@@ -16,6 +16,7 @@ interface StateProps {
 
 interface DispatchProps {
   onFetchCurrencyPairs: () => void;
+  onFetchOrders: () => void;
   onReceiveOrders: (orders: Order[]) => void;
 }
 
@@ -26,10 +27,7 @@ class DashBoardContainerInner extends Component<Props> {
 
   public async componentDidMount() {
     this.props.onFetchCurrencyPairs();
-    const ordersJSON = localStorage.getItem('orders');
-    const orders = ordersJSON && (await JSON.parse(ordersJSON));
-    console.log(orders);
-    this.props.onReceiveOrders(orders);
+    this.props.onFetchOrders();
   }
 
   public render() {
@@ -45,6 +43,7 @@ const mapStateToProps = (state: RootState) => ({});
 
 const mapDispatchToProps = (dispatch: Dispatch<CurrencyPairsActionTypes | OrdersActionTypes>) => ({
   onFetchCurrencyPairs: () => dispatch({ type: REQUEST_FETCH_CURRENCY_PAIRS }),
+  onFetchOrders: () => dispatch({ type: REQUEST_FETCH_ORDERS }),
   onReceiveOrders: (orders: Order[]) => dispatch({ type: RECEIVE_SUCCESS_FETCH_ORDERS, payload: { orders } }),
 });
 

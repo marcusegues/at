@@ -1,3 +1,6 @@
+import { camelizeKeys } from 'humps';
+import { CurrencyPair } from '../reducers/currencyPairs/types';
+
 export class ApiRequestError extends Error {
   public statusCode: number;
 
@@ -13,7 +16,7 @@ export class ApiRequestError extends Error {
   }
 }
 
-export const getRequest = async <T>(path: string) => {
+export const getRequest = async <T>(path: string): Promise<T> => {
   const response = await fetch(
     // in development we are using webpack-dev-server to proxy our request to avoid CORS
     `${process.env.NODE_ENV === 'development' ? '' : process.env.REACT_APP_BASE_URL}${path}`,
@@ -23,8 +26,8 @@ export const getRequest = async <T>(path: string) => {
   );
 
   if (response.ok) {
-    const res = await response.json();
-    console.log(res);
+    // Type assertion because camelizeKeys returns Object
+    return camelizeKeys(await response.json()) as T;
   }
 
   throw new ApiRequestError(response.status, response.statusText);

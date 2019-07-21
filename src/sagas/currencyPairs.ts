@@ -1,13 +1,13 @@
-import { requestGetCurrencyPairs } from '../api/currencyPairs';
+import { requestGetCurrencyPairs } from '../api/currencyPairs/index';
 import { call, put } from 'redux-saga/effects';
+import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS } from '../actions/currencyPairs';
 
 export function* fetchCurrencyPairsSaga() {
   try {
     const currencyPairs = yield call(requestGetCurrencyPairs);
     yield put({
-      type: 'RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS',
+      type: RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS,
       payload: { currencyPairs },
-      error: false,
     });
   } catch (error) {
     console.log('ERRROR', error.statusCode);

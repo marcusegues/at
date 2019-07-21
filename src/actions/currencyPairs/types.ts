@@ -1,8 +1,14 @@
-export const RECEIVE_SUCCESS_CURRENCY_PAIRS = 'RECEIVE_SUCCESS_CURRENCY_PAIRS';
+import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS, REQUEST_FETCH_CURRENCY_PAIRS } from './index';
 
-interface ReceiveSuccessCurrencyPairsAction {
-  type: typeof RECEIVE_SUCCESS_CURRENCY_PAIRS;
-  payload: string;
+interface ReceiveSuccessCurrencyPairsActionType {
+  type: typeof RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS;
+  payload: any;
 }
 
-export type CurrencyPairsActionTypes = ReceiveSuccessCurrencyPairsAction;
+interface RequestFetchCurrencyPairsActionType {
+  type: typeof REQUEST_FETCH_CURRENCY_PAIRS;
+}
+
+export type CurrencyPairsActionTypes =
+  | ReceiveSuccessCurrencyPairsActionType
+  | RequestFetchCurrencyPairsActionType;

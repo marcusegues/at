@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { RootState } from '../../reducers/types';
 import { AnyAction } from 'redux';
 import { getRequest } from '../../api';
+import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
+import { REQUEST_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
 
 interface OwnProps {}
 
@@ -26,8 +28,8 @@ class DashBoardContainerInner extends PureComponent<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({});
 
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-  fetchCurrencyPairs: dispatch({ type: 'REQUEST_FETCH_CURRENCY_PAIRS' }),
+const mapDispatchToProps = (dispatch: Dispatch<CurrencyPairsActionTypes>) => ({
+  fetchCurrencyPairs: dispatch({ type: REQUEST_FETCH_CURRENCY_PAIRS }),
 });
 
 export const DashboardContainer = connect(

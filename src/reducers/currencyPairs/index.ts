@@ -1,4 +1,6 @@
+import { combineReducers } from 'redux';
+import { byId } from './byId';
+import { allIds } from './allIds';
 import { CurrencyPairsState } from './types';
-import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 
-export const currencyPairs = (state: CurrencyPairsState = {}, action: CurrencyPairsActionTypes) => state;
+export const currencyPairs = combineReducers<CurrencyPairsState>({ byId, allIds });

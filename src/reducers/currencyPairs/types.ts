@@ -8,6 +8,12 @@ export interface CurrencyPair {
   expiration: string;
   margin: boolean;
 }
-export interface CurrencyPairsState {
+
+export interface ByIdState {
   [currencyPair: string]: CurrencyPair;
+}
+
+export interface CurrencyPairsState {
+  byId: ByIdState;
+  allIds: string[];
 }

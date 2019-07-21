@@ -10,7 +10,7 @@ export interface CurrencyPair {
 }
 
 export interface ByIdState {
-  [currencyPair: string]: CurrencyPair;
+  [currencyPairId: string]: CurrencyPair;
 }
 
 export interface CurrencyPairsState {

@@ -1,6 +1,6 @@
 import produce from 'immer';
-import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
+import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { CurrencyPair } from './types';
 
 export const allIds = (state: string[] = [], action: CurrencyPairsActionTypes): string[] =>

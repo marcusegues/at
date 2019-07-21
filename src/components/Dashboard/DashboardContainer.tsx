@@ -1,24 +1,14 @@
+import { Button } from 'antd';
 import React, { Dispatch, PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { RootState } from '../../reducers/types';
-import { Button } from 'antd';
-import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { REQUEST_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
+import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
+import { RootState } from '../../reducers/types';
 
-interface OwnProps {}
-
-interface StateProps {}
-
-interface DispatchProps {}
-
-type Props = StateProps & DispatchProps & OwnProps;
-
-interface State {}
-
-class DashBoardContainerInner extends PureComponent<Props, State> {
+class DashBoardContainerInner extends PureComponent {
   public state = {};
 
-  async componentDidMount() {}
+  public async componentDidMount() {}
 
   public render() {
     return (

@@ -1,7 +1,7 @@
-import { ByIdState } from './types';
 import produce from 'immer';
-import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
+import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
+import { ByIdState } from './types';
 
 export const byId = (state: ByIdState = {}, action: CurrencyPairsActionTypes): ByIdState =>
   produce(state, draft => {

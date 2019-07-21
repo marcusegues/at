@@ -1,4 +1,4 @@
-import { takeLatest, all } from 'redux-saga/effects';
+import { all, takeLatest } from 'redux-saga/effects';
 import { fetchCurrencyPairsSaga } from './currencyPairs';
 
 function* watchSupplierOrdersSagas() {

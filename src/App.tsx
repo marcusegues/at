@@ -2,8 +2,8 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Store } from 'redux';
-import { RootState } from './reducers/types';
 import { DashboardContainer } from './components/Dashboard/DashboardContainer';
+import { RootState } from './reducers/types';
 
 interface Props {
   store: Store<RootState>;

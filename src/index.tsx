@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
+import rootSaga from './sagas';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from './store/configureStore';
 import { sagaMiddleware } from './store/configureStore';
-import rootSaga from './sagas';
 
 const store = configureStore();
 sagaMiddleware.run(rootSaga);

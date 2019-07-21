@@ -1,6 +1,6 @@
-import { requestGetCurrencyPairs } from '../api/currencyPairs/index';
 import { call, put } from 'redux-saga/effects';
 import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS } from '../actions/currencyPairs';
+import { requestGetCurrencyPairs } from '../api/currencyPairs/index';
 
 export function* fetchCurrencyPairsSaga() {
   try {

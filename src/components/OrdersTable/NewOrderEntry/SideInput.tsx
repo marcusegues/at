@@ -9,6 +9,7 @@ interface Props {
 }
 
 export const SideInput = ({ onSelectSide, selectedSide }: Props) => {
+  console.log('Rendering Side input');
   return (
     <Select style={{ width: 150 }} value={selectedSide} onChange={onSelectSide}>
       {Object.keys(OrderSide).map(side => (

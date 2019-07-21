@@ -1,3 +1,11 @@
-import { Order, OrdersState } from './types';
+import { ByIdState, Order, OrdersState } from './types';
+import { createSelector, Selector } from 'reselect';
 
-export const getOrders = (state: OrdersState): Order[] => state.allIds.map(id => state.byId[id]);
+const getAllIds: Selector<OrdersState, string[]> = (state: OrdersState): string[] => state.allIds;
+
+const getById: Selector<OrdersState, ByIdState> = (state: OrdersState): ByIdState => state.byId;
+
+export const getOrders = createSelector<OrdersState, string[], ByIdState, Order[]>(
+  [getAllIds, getById],
+  (allIds: string[], byId: ByIdState): Order[] => allIds.map(id => byId[id])
+);

@@ -1,10 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
 import { CurrencyPair } from '../../../reducers/currencyPairs/types';
-import { OrderSide } from '../../../reducers/orders/types';
+import { OrderSide, OrderType } from '../../../reducers/orders/types';
 import { NewOrder } from '../OrdersTableContainer';
 import { CurrencyPairInput } from './CurrencyPairInput';
 import { SideInput } from './SideInput';
+import { TypeInput } from './TypeInput';
 
 const Container = styled.div`
   height: 125px;
@@ -22,23 +23,22 @@ interface Props {
   currencyPairs: CurrencyPair[];
   onSelectCurrencyPair: (currencyPair: string) => void;
   onSelectSide: (side: OrderSide) => void;
+  onSelectType: (type: OrderType) => void;
   newOrder: NewOrder;
 }
 
-export const NewOrderEntry = ({
-  orderCount,
-  currencyPairs,
-  onSelectCurrencyPair,
-  onSelectSide,
-  newOrder,
-}: Props) => (
-  <Container>
-    <Title>{`Orders (${orderCount})`}</Title>
-    <CurrencyPairInput
-      currencyPairs={currencyPairs}
-      onSelectCurrencyPair={onSelectCurrencyPair}
-      selectedCurrencyPair={newOrder.pair}
-    />
-    <SideInput onSelectSide={onSelectSide} selectedSide={newOrder.side} />
-  </Container>
-);
+export const NewOrderEntry = (props: Props) => {
+  console.log('Rendering New Order entry');
+  return (
+    <Container>
+      <Title>{`Orders (${props.orderCount})`}</Title>
+      <CurrencyPairInput
+        currencyPairs={props.currencyPairs}
+        onSelectCurrencyPair={props.onSelectCurrencyPair}
+        selectedCurrencyPair={props.newOrder.pair}
+      />
+      <SideInput onSelectSide={props.onSelectSide} selectedSide={props.newOrder.side} />
+      <TypeInput onSelectType={props.onSelectType} selectedType={props.newOrder.type} />
+    </Container>
+  );
+};

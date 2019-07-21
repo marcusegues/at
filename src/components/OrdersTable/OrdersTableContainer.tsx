@@ -77,6 +77,14 @@ class OrdersTableContainerInner extends Component<Props, State> {
     );
   };
 
+  public onSelectType = (type: OrderType) => {
+    this.setState(
+      produce(draft => {
+        draft.newOrder.type = type;
+      })
+    );
+  };
+
   public render() {
     console.log('render', this.props);
     const { orders, currencyPairs } = this.props;
@@ -87,6 +95,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
           currencyPairs={currencyPairs()}
           onSelectCurrencyPair={this.onSelectCurrencyPair}
           onSelectSide={this.onSelectSide}
+          onSelectType={this.onSelectType}
           newOrder={this.state.newOrder}
         />
         <AgGridReact columnDefs={this.state.columns} rowData={orders} />

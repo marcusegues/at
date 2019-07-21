@@ -5,6 +5,7 @@ import rootSaga from './sagas';
 import * as serviceWorker from './serviceWorker';
 import { configureStore } from './store/configureStore';
 import { sagaMiddleware } from './store/configureStore';
+import './App.css';
 
 const store = configureStore();
 sagaMiddleware.run(rootSaga);

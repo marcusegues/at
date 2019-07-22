@@ -1,5 +1,4 @@
 import { camelizeKeys } from 'humps';
-import { CurrencyPair } from '../reducers/currencyPairs/types';
 
 export class ApiRequestError extends Error {
   public statusCode: number;

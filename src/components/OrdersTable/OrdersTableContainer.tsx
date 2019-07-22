@@ -4,7 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import produce from 'immer';
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { REQUEST_NEW_ORDER } from '../../actions/orders';
+import { REQUEST_SUBMIT_NEW_ORDER } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
 import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { Order, OrderSide, OrderType } from '../../reducers/orders/types';
@@ -12,25 +12,23 @@ import { getCurrencyPairs, getOrdersSelector } from '../../reducers/selectors';
 import { RootState } from '../../reducers/types';
 import { NewOrderEntry } from './NewOrderEntry/NewOrderEntry';
 
-interface OwnProps {}
-
 interface StateProps {
   orders: Order[];
   currencyPairs: () => CurrencyPair[];
 }
 
 interface DispatchProps {
-  onNewOrder: (order: Order) => void;
+  onSubmitNewOrder: (order: NewOrderState) => void;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 interface Column {
   headerName: string;
   field: string;
 }
 
-export interface NewOrder {
+export interface NewOrderState {
   pair?: string;
   side: OrderSide;
   type: OrderType;
@@ -38,10 +36,24 @@ export interface NewOrder {
   limit?: number;
 }
 
+type Complete<T> = {
+  [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>> ? T[P] : (T[P]);
+};
+
+export type NewOrderSubmit = Complete<NewOrderState>;
+
 interface State {
   columns: Column[];
-  newOrder: NewOrder;
+  newOrder: NewOrderState;
 }
+
+const initialNewOrder = () => ({
+  pair: undefined,
+  side: OrderSide.Buy,
+  type: OrderType.Market,
+  quantity: undefined,
+  limit: undefined,
+});
 
 class OrdersTableContainerInner extends Component<Props, State> {
   public state = {
@@ -52,13 +64,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
       { headerName: 'Limit', field: 'limit' },
       { headerName: 'Status', field: 'status' },
     ],
-    newOrder: {
-      pair: undefined,
-      side: OrderSide.Buy,
-      type: OrderType.Market,
-      quantity: undefined,
-      limit: undefined,
-    },
+    newOrder: initialNewOrder(),
   };
 
   public onSelectCurrencyPair = (pair: string) => {
@@ -81,6 +87,34 @@ class OrdersTableContainerInner extends Component<Props, State> {
     this.setState(
       produce(draft => {
         draft.newOrder.type = type;
+        if (type === OrderType.Market) {
+          draft.newOrder.limit = undefined;
+        }
+      })
+    );
+  };
+
+  public onSelectQuantity = (quantity: number | undefined) => {
+    this.setState(
+      produce(draft => {
+        draft.newOrder.quantity = quantity;
+      })
+    );
+  };
+
+  public onSelectLimit = (limit: number | undefined) => {
+    this.setState(
+      produce(draft => {
+        draft.newOrder.limit = limit;
+      })
+    );
+  };
+
+  public onSubmitNewOrder = () => {
+    this.props.onSubmitNewOrder(this.state.newOrder);
+    this.setState(
+      produce(draft => {
+        draft.newOrder = initialNewOrder();
       })
     );
   };
@@ -96,7 +130,10 @@ class OrdersTableContainerInner extends Component<Props, State> {
           onSelectCurrencyPair={this.onSelectCurrencyPair}
           onSelectSide={this.onSelectSide}
           onSelectType={this.onSelectType}
+          onSelectQuantity={this.onSelectQuantity}
+          onSelectLimit={this.onSelectLimit}
           newOrder={this.state.newOrder}
+          onSubmitNewOrder={this.onSubmitNewOrder}
         />
         <AgGridReact columnDefs={this.state.columns} rowData={orders} />
       </div>
@@ -110,7 +147,8 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<OrdersActionTypes>) => ({
-  onNewOrder: (order: Order) => dispatch({ type: REQUEST_NEW_ORDER, payload: { order } }),
+  onSubmitNewOrder: (order: NewOrderState) =>
+    dispatch({ type: REQUEST_SUBMIT_NEW_ORDER, payload: { order } }),
 });
 
 export const OrdersTableContainer = connect(

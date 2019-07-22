@@ -1,12 +1,13 @@
 import { all, takeEvery, takeLatest } from 'redux-saga/effects';
 import { REQUEST_FETCH_CURRENCY_PAIRS } from '../actions/currencyPairs';
-import { REQUEST_FETCH_ORDERS } from '../actions/orders';
+import { REQUEST_FETCH_ORDERS, REQUEST_SUBMIT_NEW_ORDER } from '../actions/orders';
 import { fetchCurrencyPairsSaga } from './currencyPairs';
-import { fetchOrdersLocalStorageSaga } from './orders';
+import { fetchOrdersLocalStorageSaga, submitNewOrder } from './orders';
 
 function* watchSupplierOrdersSagas() {
   yield takeLatest(REQUEST_FETCH_CURRENCY_PAIRS, fetchCurrencyPairsSaga);
   yield takeEvery(REQUEST_FETCH_ORDERS, fetchOrdersLocalStorageSaga);
+  yield takeEvery(REQUEST_SUBMIT_NEW_ORDER, submitNewOrder);
 }
 
 export default function* rootSaga() {

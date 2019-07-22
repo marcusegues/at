@@ -5,19 +5,19 @@ const { Option } = Select;
 
 interface Props {
   currencyPairs: CurrencyPair[];
-  onSelectCurrencyPair: (currencyPair: string) => void;
-  selectedCurrencyPair?: string;
+  onChange: (currencyPair: string) => void;
+  value?: string;
 }
 
 const CurrencyPairInputInner = (props: Props) => {
   console.log('Render currency pair', props);
   return (
     <Select
-      style={{ width: 150 }}
-      placeholder={'Select symbol'}
+      style={{ width: 100, margin: 5 }}
+      placeholder={'Symbol'}
       showSearch={true}
-      onChange={props.onSelectCurrencyPair}
-      value={props.selectedCurrencyPair}
+      onChange={props.onChange}
+      value={props.value}
     >
       {props.currencyPairs.map(cp => (
         <Option key={cp.pair} value={cp.pair}>
@@ -29,18 +29,4 @@ const CurrencyPairInputInner = (props: Props) => {
 };
 
 // Performance optimization for functional components (analogous to shouldComponentUpdate in class components, or PureComponent)
-const areEqual = (prevProps: Props, nextProps: Props) => {
-  console.log(
-    'Comp',
-    prevProps.currencyPairs === nextProps.currencyPairs,
-    prevProps.onSelectCurrencyPair === nextProps.onSelectCurrencyPair,
-    prevProps.selectedCurrencyPair === nextProps.selectedCurrencyPair
-  );
-  return (
-    prevProps.currencyPairs === nextProps.currencyPairs &&
-    prevProps.onSelectCurrencyPair === nextProps.onSelectCurrencyPair &&
-    prevProps.selectedCurrencyPair === nextProps.selectedCurrencyPair
-  );
-};
-
-export const CurrencyPairInput = React.memo(CurrencyPairInputInner, areEqual);
+export const CurrencyPairInput = React.memo(CurrencyPairInputInner);

@@ -1,17 +1,18 @@
 import { Select } from 'antd';
 import React from 'react';
 import { OrderSide } from '../../../reducers/orders/types';
+
 const { Option } = Select;
 
 interface Props {
-  onSelectSide: (side: OrderSide) => void;
-  selectedSide: OrderSide;
+  onChange: (side: OrderSide) => void;
+  value: OrderSide;
 }
 
-export const SideInput = ({ onSelectSide, selectedSide }: Props) => {
+export const SideInputInner = ({ onChange, value }: Props) => {
   console.log('Rendering Side input');
   return (
-    <Select style={{ width: 150 }} value={selectedSide} onChange={onSelectSide}>
+    <Select style={{ width: 100, margin: 5 }} value={value} onChange={onChange}>
       {Object.keys(OrderSide).map(side => (
         <Option key={side} value={side}>
           {side}
@@ -20,3 +21,5 @@ export const SideInput = ({ onSelectSide, selectedSide }: Props) => {
     </Select>
   );
 };
+
+export const SideInput = React.memo(SideInputInner);

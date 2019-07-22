@@ -8,23 +8,25 @@ export enum OrderType {
   Limit = 'LIMIT',
 }
 
+export interface MarketOrder {
+  id: string;
+  pair: string;
+  side: OrderSide;
+  type: OrderType.Market;
+  quantity: number;
+}
+
+export interface LimitOrder {
+  id: string;
+  pair: string;
+  side: OrderSide;
+  type: OrderType.Limit;
+  limit: number;
+  quantity: number;
+}
+
 // property 'limit' mandatory if type is OrderType.Limit
-export type Order =
-  | {
-      id: string;
-      pair: string;
-      side: OrderSide;
-      type: OrderType.Market;
-      quantity: number;
-    }
-  | {
-      id: string;
-      pair: string;
-      side: OrderSide;
-      type: OrderType.Limit;
-      limit: number;
-      quantity: number;
-    };
+export type Order = MarketOrder | LimitOrder;
 
 export interface ByIdState {
   [orderId: string]: Order;

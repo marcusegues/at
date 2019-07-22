@@ -1,6 +1,6 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { Store } from 'redux';
 import { DashboardContainer } from './components/Dashboard/DashboardContainer';
 import { NavigationBar } from './components/NavigationBar/NavigationBar';

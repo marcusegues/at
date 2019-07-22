@@ -1,5 +1,5 @@
-import { ByIdState, Order, OrdersState } from './types';
 import { createSelector, Selector } from 'reselect';
+import { ByIdState, Order, OrdersState } from './types';
 
 const getAllIds: Selector<OrdersState, string[]> = (state: OrdersState): string[] => state.allIds;
 

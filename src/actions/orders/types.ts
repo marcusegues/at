@@ -7,16 +7,16 @@ import {
   REQUEST_SUBMIT_NEW_ORDER,
 } from './index';
 
-interface RequestFetchOrdersActionType {
+export interface RequestFetchOrdersActionType {
   type: typeof REQUEST_FETCH_ORDERS;
 }
 
-interface ReceiveSuccessFetchOrdersActionType {
+export interface ReceiveSuccessFetchOrdersActionType {
   type: typeof RECEIVE_SUCCESS_FETCH_ORDERS;
   payload: { orders: Order[] };
 }
 
-export interface RequestNewOrderActionType {
+export interface RequestSubmitNewOrderActionType {
   type: typeof REQUEST_SUBMIT_NEW_ORDER;
   payload: { order: NewOrderState };
 }
@@ -29,5 +29,5 @@ export interface ReceiveSuccessSubmitNewOrder {
 export type OrdersActionTypes =
   | RequestFetchOrdersActionType
   | ReceiveSuccessFetchOrdersActionType
-  | RequestNewOrderActionType
+  | RequestSubmitNewOrderActionType
   | ReceiveSuccessSubmitNewOrder;

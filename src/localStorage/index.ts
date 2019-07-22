@@ -28,6 +28,7 @@ export const fetchOrdersLocalStorage = (): Order[] => {
   return serialized !== null ? parser(serialized) : [];
 };
 
-export const storeOrdersLocalStorage = (orders: Order[]) => {
-  storeDataLocalStorage('orders', orders);
+export const storeOrdersLocalStorage = (orders: Order[]): boolean => {
+  console.log('fucdagagasdga');
+  return storeDataLocalStorage('orders', orders);
 };

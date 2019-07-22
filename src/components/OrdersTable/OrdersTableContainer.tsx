@@ -4,7 +4,7 @@ import { AgGridReact } from 'ag-grid-react';
 import produce from 'immer';
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
-import { REQUEST_SUBMIT_NEW_ORDER } from '../../actions/orders';
+import { requestSubmitNewOrderAction } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
 import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { Order, OrderSide, OrderType } from '../../reducers/orders/types';
@@ -52,11 +52,11 @@ const initialNewOrder = () => ({
 class OrdersTableContainerInner extends Component<Props, State> {
   public state = {
     columns: [
-      { headerName: 'Symbol', field: 'pair', width: 110 },
-      { headerName: 'Side', field: 'side', width: 110 },
-      { headerName: 'Quantity', field: 'quantity', width: 110 },
-      { headerName: 'Limit', field: 'limit', width: 110 },
-      { headerName: 'Status', field: 'status', width: 110 },
+      { headerName: 'Symbol', field: 'pair', width: 124 },
+      { headerName: 'Side', field: 'side', width: 124 },
+      { headerName: 'Quantity', field: 'quantity', width: 124 },
+      { headerName: 'Limit', field: 'limit', width: 124 },
+      { headerName: 'Status', field: 'status', width: 124 },
     ],
     newOrder: initialNewOrder(),
   };
@@ -141,8 +141,7 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<OrdersActionTypes>) => ({
-  onSubmitNewOrder: (order: NewOrderState) =>
-    dispatch({ type: REQUEST_SUBMIT_NEW_ORDER, payload: { order } }),
+  onSubmitNewOrder: (order: NewOrderState) => dispatch(requestSubmitNewOrderAction({ order })),
 });
 
 export const OrdersTableContainer = connect(

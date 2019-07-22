@@ -36,12 +36,6 @@ export interface NewOrderState {
   limit?: number;
 }
 
-type Complete<T> = {
-  [P in keyof Required<T>]: Pick<T, P> extends Required<Pick<T, P>> ? T[P] : (T[P]);
-};
-
-export type NewOrderSubmit = Complete<NewOrderState>;
-
 interface State {
   columns: Column[];
   newOrder: NewOrderState;
@@ -58,11 +52,11 @@ const initialNewOrder = () => ({
 class OrdersTableContainerInner extends Component<Props, State> {
   public state = {
     columns: [
-      { headerName: 'Symbol', field: 'pair' },
-      { headerName: 'Side', field: 'side' },
-      { headerName: 'Quantity', field: 'quantity' },
-      { headerName: 'Limit', field: 'limit' },
-      { headerName: 'Status', field: 'status' },
+      { headerName: 'Symbol', field: 'pair', width: 110 },
+      { headerName: 'Side', field: 'side', width: 110 },
+      { headerName: 'Quantity', field: 'quantity', width: 110 },
+      { headerName: 'Limit', field: 'limit', width: 110 },
+      { headerName: 'Status', field: 'status', width: 110 },
     ],
     newOrder: initialNewOrder(),
   };

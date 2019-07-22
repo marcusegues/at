@@ -36,7 +36,7 @@ class DashBoardContainerInner extends Component<Props> {
           flexDirection: 'column',
           marginLeft: 20,
           marginRight: 20,
-          width: 800,
+          width: 550,
         }}
       >
         <OrdersTableContainer />

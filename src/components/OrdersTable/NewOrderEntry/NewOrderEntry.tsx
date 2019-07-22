@@ -10,10 +10,16 @@ import { SideInput } from './SideInput';
 import { TypeInput } from './TypeInput';
 
 const Container = styled.div`
-  height: 125px;
   border: solid 1px rgb(189, 195, 199);
   border-bottom: 0;
   padding: 5px;
+`;
+
+const InputContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
 `;
 
 const Title = styled.span`
@@ -37,24 +43,26 @@ export const NewOrderEntryInner = (props: Props) => {
   return (
     <Container>
       <Title>{`Orders (${props.orderCount})`}</Title>
-      <CurrencyPairInput
-        value={props.newOrder.pair}
-        onChange={props.onSelectCurrencyPair}
-        currencyPairs={props.currencyPairs}
-      />
-      <SideInput value={props.newOrder.side} onChange={props.onSelectSide} />
-      <TypeInput value={props.newOrder.type} onChange={props.onSelectType} />
-      {props.newOrder.type === OrderType.Limit ? (
-        <NumberInput value={props.newOrder.limit} onChange={props.onSelectLimit} placeholder={'Limit'} />
-      ) : null}
-      <NumberInput
-        value={props.newOrder.quantity}
-        onChange={props.onSelectQuantity}
-        placeholder={'Quantity'}
-      />
-      <Button type="primary" onClick={props.onSubmitNewOrder}>
-        Submit
-      </Button>
+      <InputContainer>
+        <CurrencyPairInput
+          value={props.newOrder.pair}
+          onChange={props.onSelectCurrencyPair}
+          currencyPairs={props.currencyPairs}
+        />
+        <SideInput value={props.newOrder.side} onChange={props.onSelectSide} />
+        <TypeInput value={props.newOrder.type} onChange={props.onSelectType} />
+        {props.newOrder.type === OrderType.Limit ? (
+          <NumberInput value={props.newOrder.limit} onChange={props.onSelectLimit} placeholder={'Limit'} />
+        ) : null}
+        <NumberInput
+          value={props.newOrder.quantity}
+          onChange={props.onSelectQuantity}
+          placeholder={'Quantity'}
+        />
+        <Button type="primary" onClick={props.onSubmitNewOrder} style={{ marginLeft: 20 }}>
+          Submit Order
+        </Button>
+      </InputContainer>
     </Container>
   );
 };

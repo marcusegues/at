@@ -4,7 +4,7 @@ import { RequestSubmitNewOrderActionType } from '../../actions/orders/types';
 import { fetchOrdersLocalStorage, storeOrdersLocalStorage } from '../../localStorage';
 import { OrderType } from '../../reducers/orders/types';
 import { getOrdersSelector } from '../../reducers/selectors';
-import { addIdToOrder } from './helpers';
+import helpers from './helpers';
 
 export function* fetchOrdersLocalStorageSaga() {
   try {
@@ -26,7 +26,8 @@ export function* submitNewOrderSaga({ payload: { order } }: RequestSubmitNewOrde
     ) {
       // normally we would post the new order to the backend here using external function
       // instead, we delegate to helper function so we can still test
-      const newOrder = addIdToOrder(order);
+
+      const newOrder = helpers.addIdToOrder(order);
 
       // save to redux
       yield put(receiveSuccessSubmitNewOrderAction({ order: newOrder }));

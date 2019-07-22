@@ -6,7 +6,12 @@ const getAllIds: Selector<CurrencyPairsState, string[]> = (state: CurrencyPairsS
 
 const getById: Selector<CurrencyPairsState, ByIdState> = (state: CurrencyPairsState): ByIdState => state.byId;
 
-export const getCurrencyPairs = createSelector<CurrencyPairsState, string[], ByIdState, CurrencyPair[]>(
+export const getCurrencyPairsSelector = createSelector<
+  CurrencyPairsState,
+  string[],
+  ByIdState,
+  CurrencyPair[]
+>(
   [getAllIds, getById],
   (allIds: string[], byId: ByIdState): CurrencyPair[] => allIds.map(id => byId[id])
 );

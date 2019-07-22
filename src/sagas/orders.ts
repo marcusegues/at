@@ -1,9 +1,10 @@
-import { call, put } from 'redux-saga/effects';
+import { call, put, select } from 'redux-saga/effects';
 import { v4 } from 'uuid';
 import { RECEIVE_SUCCESS_FETCH_ORDERS, RECEIVE_SUCCESS_SUBMIT_NEW_ORDER } from '../actions/orders';
 import { RequestNewOrderActionType } from '../actions/orders/types';
-import { fetchOrdersLocalStorage } from '../localStorage';
+import { fetchOrdersLocalStorage, storeOrdersLocalStorage } from '../localStorage';
 import { Order, OrderType } from '../reducers/orders/types';
+import { getOrdersSelector } from '../reducers/selectors';
 
 export function* fetchOrdersLocalStorageSaga() {
   try {
@@ -33,9 +34,11 @@ export function* submitNewOrder({ payload: { order } }: RequestNewOrderActionTyp
         type: RECEIVE_SUCCESS_SUBMIT_NEW_ORDER,
         payload: { order: newOrder },
       });
-    }
 
-    // save to localStorage
+      // save to localStorage
+      const orders = yield select(getOrdersSelector);
+      storeOrdersLocalStorage(orders);
+    }
   } catch (error) {
     console.log('ERRROR', error);
     // yield put({ type: 'RECEIVE_ERROR_FETCH_SUPPLIER_ORDERS', error: error.message });

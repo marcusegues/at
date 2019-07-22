@@ -8,8 +8,6 @@ import { Order } from '../../reducers/orders/types';
 import { RootState } from '../../reducers/types';
 import { OrdersTableContainer } from '../OrdersTable/OrdersTableContainer';
 
-interface OwnProps {}
-
 interface StateProps {
   orders: Order[];
 }
@@ -20,7 +18,7 @@ interface DispatchProps {
   onReceiveOrders: (orders: Order[]) => void;
 }
 
-type Props = StateProps & DispatchProps & OwnProps;
+type Props = StateProps & DispatchProps;
 
 class DashBoardContainerInner extends Component<Props> {
   public state = {};

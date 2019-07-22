@@ -8,7 +8,7 @@ import { REQUEST_SUBMIT_NEW_ORDER } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
 import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { Order, OrderSide, OrderType } from '../../reducers/orders/types';
-import { getCurrencyPairs, getOrdersSelector } from '../../reducers/selectors';
+import { getCurrencyPairsSelector, getOrdersSelector } from '../../reducers/selectors';
 import { RootState } from '../../reducers/types';
 import { NewOrderEntry } from './NewOrderEntry/NewOrderEntry';
 
@@ -143,7 +143,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   orders: getOrdersSelector(state),
-  currencyPairs: () => getCurrencyPairs(state),
+  currencyPairs: () => getCurrencyPairsSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<OrdersActionTypes>) => ({

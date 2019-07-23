@@ -1,5 +1,5 @@
-import React from 'react';
 import { AgGridReact } from 'ag-grid-react';
+import React from 'react';
 import { Order } from '../../reducers/orders/types';
 
 interface Column {

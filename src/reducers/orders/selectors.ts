@@ -1,13 +1,13 @@
 import { createSelector, Selector } from 'reselect';
-import { ByIdState, Order, OrdersState } from './types';
+import { Order, OrdersByIdState, OrdersState } from './types';
 
 const getAllIds: Selector<OrdersState, string[]> = (state: OrdersState): string[] => state.allIds;
 
-const getById: Selector<OrdersState, ByIdState> = (state: OrdersState): ByIdState => state.byId;
+const getById: Selector<OrdersState, OrdersByIdState> = (state: OrdersState): OrdersByIdState => state.byId;
 
-export const getOrdersSelector = createSelector<OrdersState, string[], ByIdState, Order[]>(
+export const getOrdersSelector = createSelector<OrdersState, string[], OrdersByIdState, Order[]>(
   [getAllIds, getById],
-  (allIds: string[], byId: ByIdState): Order[] => {
+  (allIds: string[], byId: OrdersByIdState): Order[] => {
     return allIds.map(id => byId[id]);
   }
 );

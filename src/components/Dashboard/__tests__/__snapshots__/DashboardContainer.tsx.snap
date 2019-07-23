@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardContainer calls passed in actions 1`] = `
+<styled.div>
+  <Connect(OrdersTableContainerInner) />
+</styled.div>
+`;

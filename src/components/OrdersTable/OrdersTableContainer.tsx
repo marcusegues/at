@@ -1,6 +1,5 @@
 import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-balham.css';
-import { AgGridReact } from 'ag-grid-react';
 import produce from 'immer';
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';

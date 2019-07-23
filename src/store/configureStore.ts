@@ -4,7 +4,9 @@ import { root } from '../reducers';
 
 // Redux-Saga
 import createSagaMiddleware from 'redux-saga';
+import { RootState } from '../reducers/types';
 
 export const sagaMiddleware = createSagaMiddleware();
 
-export const configureStore = () => createStore(root, composeWithDevTools(applyMiddleware(sagaMiddleware)));
+export const configureStore = (preloadedState?: RootState) =>
+  createStore(root, preloadedState, composeWithDevTools(applyMiddleware(sagaMiddleware)));

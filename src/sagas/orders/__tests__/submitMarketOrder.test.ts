@@ -4,20 +4,16 @@ import { storeOrdersLocalStorage } from '../../../localStorage';
 import { Order } from '../../../reducers/orders/types';
 import { getOrdersSelector } from '../../../reducers/selectors';
 import { RootState } from '../../../reducers/types';
+import { getStateWithOrdersFixture, newMarketOrderFixture } from '../../../tests/fixtures/fixtures';
 import { recordSaga } from '../../helpers';
 import { MOCK_ID } from '../__mocks__/helpers';
 import helpers from '../helpers';
 import { submitNewOrderSaga } from '../orders';
-import { newMarketOrderFixture } from '../../../tests/fixtures';
 
-const stateWithOrdersFixture = (): Pick<RootState, 'orders'> => ({
-  orders: {
-    allIds: [MOCK_ID],
-    byId: {
-      [MOCK_ID]: helpers.addIdToOrder(newMarketOrderFixture()) as Order,
-    },
-  },
-});
+const stateWithOrdersFixture = () =>
+  getStateWithOrdersFixture([MOCK_ID], {
+    [MOCK_ID]: helpers.addIdToOrder(newMarketOrderFixture()) as Order,
+  });
 
 // mock addIdToOrder so we can have a deterministic id in tests
 jest.mock('../helpers');

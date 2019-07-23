@@ -28,11 +28,11 @@ export interface LimitOrder {
 // property 'limit' mandatory if type is OrderType.Limit
 export type Order = MarketOrder | LimitOrder;
 
-export interface ByIdState {
+export interface OrdersByIdState {
   [orderId: string]: Order;
 }
 
 export interface OrdersState {
-  byId: ByIdState;
+  byId: OrdersByIdState;
   allIds: string[];
 }

@@ -1,5 +1,8 @@
-import { NewOrderState } from '../components/OrdersTable/OrdersTableContainer';
-import { OrderSide, OrderType } from '../reducers/orders/types';
+import { NewOrderState } from '../../components/OrdersTable/OrdersTableContainer';
+import { Order, OrdersByIdState, OrderSide, OrderType } from '../../reducers/orders/types';
+import { RootState } from '../../reducers/types';
+import { MOCK_ID } from '../../sagas/orders/__mocks__/helpers';
+import helpers from '../../sagas/orders/helpers';
 
 export const PAIR_ID = 'iotbtc';
 
@@ -94,3 +97,13 @@ export const currencyPairsFixture = () => [
     margin: true,
   },
 ];
+
+export const getStateWithOrdersFixture = (
+  allIds: string[],
+  byId: OrdersByIdState
+): Pick<RootState, 'orders'> => ({
+  orders: {
+    allIds,
+    byId,
+  },
+});

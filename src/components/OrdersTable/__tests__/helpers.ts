@@ -1,10 +1,10 @@
-import { isNewOrderValid } from '../helpers';
 import {
   currencyPairsFixture,
   newLimitOrderFixture,
   newMarketOrderFixture,
   PAIR_MAXIMUM_ORDER_SIZE,
-} from '../../../tests/fixtures';
+} from '../../../tests/fixtures/fixtures';
+import { isNewOrderValid } from '../helpers';
 
 describe('isNewOrderValid with market order', () => {
   const currencyPairs = currencyPairsFixture();

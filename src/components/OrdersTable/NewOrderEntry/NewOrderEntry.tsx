@@ -4,11 +4,11 @@ import styled from 'styled-components';
 import { CurrencyPair } from '../../../reducers/currencyPairs/types';
 import { OrderSide, OrderType } from '../../../reducers/orders/types';
 import { NumberInput } from '../../Input/NumberInput';
+import { isNewOrderValid } from '../helpers';
 import { NewOrderState } from '../OrdersTableContainer';
 import { CurrencyPairInput } from './CurrencyPairInput';
 import { SideInput } from './SideInput';
 import { TypeInput } from './TypeInput';
-import { isNewOrderValid } from '../helpers';
 
 const Container = styled.div`
   border: solid 1px rgb(189, 195, 199);

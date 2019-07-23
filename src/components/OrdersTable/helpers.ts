@@ -1,6 +1,6 @@
+import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { OrderSide, OrderType } from '../../reducers/orders/types';
 import { NewOrderState } from './OrdersTableContainer';
-import { CurrencyPair } from '../../reducers/currencyPairs/types';
 
 /*
  Test if a new order object is valid for submission

@@ -11,8 +11,9 @@ export function* fetchOrdersLocalStorageSaga() {
     const orders = yield call(fetchOrdersLocalStorage);
     yield put(receiveSuccessFetchOrdersAction({ orders }));
   } catch (error) {
-    console.log('ERRROR', error.statusCode);
-    // yield put({ type: 'RECEIVE_ERROR_FETCH_SUPPLIER_ORDERS', error: error.message });
+    // Todo: analogous to fetchCurrencyPairsSaga
+  } finally {
+    // Todo: analogous to fetchCurrencyPairsSaga
   }
 }
 
@@ -37,7 +38,8 @@ export function* submitNewOrderSaga({ payload: { order } }: RequestSubmitNewOrde
       storeOrdersLocalStorage(orders);
     }
   } catch (error) {
-    console.log('ERRROR', error);
-    // yield put({ type: 'RECEIVE_ERROR_FETCH_SUPPLIER_ORDERS', error: error.message });
+    // Todo: analogous to fetchCurrencyPairsSaga
+  } finally {
+    // Todo: analogous to fetchCurrencyPairsSaga
   }
 }

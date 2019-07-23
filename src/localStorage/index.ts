@@ -6,7 +6,7 @@ const storeDataLocalStorage = (key: StorageKeys, value: any): boolean => {
     localStorage.setItem(key, JSON.stringify(value));
     return true;
   } catch (error) {
-    console.log(error);
+    // Todo: don't catch here, throw and let caller update redux state
     return false;
   }
 };
@@ -15,7 +15,7 @@ const fetchGenericDataLocalStorage = (key: StorageKeys): string | null => {
   try {
     return localStorage.getItem(key);
   } catch (error) {
-    console.log(error);
+    // Todo: don't catch here, throw and let caller update redux state
     return null;
   }
 };

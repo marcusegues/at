@@ -1,6 +1,6 @@
+import { shallow } from 'enzyme';
 import React from 'react';
 import { DashboardContainer } from '../DashboardContainer';
-import { shallow } from 'enzyme';
 import { DashBoardContainerInner } from '../DashboardContainer';
 
 describe('DashboardContainer', () => {

@@ -1,7 +1,7 @@
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { REQUEST_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
+import { REQUEST_FETCH_CURRENCY_PAIRS, requestFetchCurrencyPairsAction } from '../../actions/currencyPairs';
 import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { requestFetchOrdersAction } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';
@@ -40,7 +40,7 @@ const Container = styled.div`
 `;
 
 const mapDispatchToProps = (dispatch: Dispatch<CurrencyPairsActionTypes | OrdersActionTypes>) => ({
-  onFetchCurrencyPairs: () => dispatch({ type: REQUEST_FETCH_CURRENCY_PAIRS }),
+  onFetchCurrencyPairs: () => dispatch(requestFetchCurrencyPairsAction()),
   onFetchOrders: () => dispatch(requestFetchOrdersAction()),
 });
 

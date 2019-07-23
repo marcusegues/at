@@ -9,11 +9,11 @@ export interface CurrencyPair {
   margin: boolean;
 }
 
-export interface ByIdState {
+export interface CurrencyPairsByIdState {
   [currencyPairId: string]: CurrencyPair;
 }
 
 export interface CurrencyPairsState {
-  byId: ByIdState;
+  byId: CurrencyPairsByIdState;
   allIds: string[];
 }

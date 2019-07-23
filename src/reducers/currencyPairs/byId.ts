@@ -1,9 +1,12 @@
 import produce from 'immer';
 import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS } from '../../actions/currencyPairs';
 import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
-import { ByIdState } from './types';
+import { CurrencyPairsByIdState } from './types';
 
-export const byId = (state: ByIdState = {}, action: CurrencyPairsActionTypes): ByIdState =>
+export const byId = (
+  state: CurrencyPairsByIdState = {},
+  action: CurrencyPairsActionTypes
+): CurrencyPairsByIdState =>
   produce(state, draft => {
     switch (action.type) {
       case RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS: {
@@ -12,8 +15,6 @@ export const byId = (state: ByIdState = {}, action: CurrencyPairsActionTypes): B
           (cp: any) =>
             (draft[cp.pair] = {
               ...cp,
-              minimumOrderSize: parseInt(cp.minimumOrderSize, 10),
-              maximumOrderSize: parseInt(cp.maximumOrderSize, 10),
             })
         );
       }

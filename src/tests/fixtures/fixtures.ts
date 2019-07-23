@@ -1,4 +1,5 @@
 import { NewOrderState } from '../../components/OrdersTable/OrdersTableContainer';
+import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { Order, OrdersByIdState, OrderSide, OrderType } from '../../reducers/orders/types';
 import { RootState } from '../../reducers/types';
 import { MOCK_ID } from '../../sagas/orders/__mocks__/helpers';
@@ -25,7 +26,7 @@ export const newLimitOrderFixture = (props?: Partial<NewOrderState>) => ({
   ...props,
 });
 
-export const currencyPairsFixture = () => [
+export const currencyPairsFixture = (): CurrencyPair[] => [
   {
     pair: 'btcusd',
     pricePrecision: 5,

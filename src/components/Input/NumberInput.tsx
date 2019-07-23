@@ -2,6 +2,7 @@ import { InputNumber } from 'antd';
 import React from 'react';
 
 interface Props {
+  'data-cy': string;
   onChange: (quantity: number | undefined) => void;
   value: number | undefined;
   placeholder?: string;
@@ -12,6 +13,7 @@ const NumberInputInner = (props: Props) => {
   console.log('Rendering quantity input');
   return (
     <InputNumber
+      data-cy={props['data-cy']}
       style={{ margin: 5 }}
       value={props.value}
       min={0}

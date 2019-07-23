@@ -13,6 +13,7 @@ const CurrencyPairInputInner = (props: Props) => {
   console.log('Render currency pair', props);
   return (
     <Select
+      data-cy="currencyPairInput"
       style={{ width: 100, margin: 5 }}
       placeholder={'Symbol'}
       showSearch={true}
@@ -20,7 +21,7 @@ const CurrencyPairInputInner = (props: Props) => {
       value={props.value}
     >
       {props.currencyPairs.map(cp => (
-        <Option key={cp.pair} value={cp.pair}>
+        <Option data-cy="currencyPair" key={cp.pair} value={cp.pair}>
           {cp.pair}
         </Option>
       ))}

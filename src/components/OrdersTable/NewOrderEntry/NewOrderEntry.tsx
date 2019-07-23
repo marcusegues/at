@@ -52,14 +52,25 @@ export const NewOrderEntryInner = (props: Props) => {
         <SideInput value={props.newOrder.side} onChange={props.onSelectSide} />
         <TypeInput value={props.newOrder.type} onChange={props.onSelectType} />
         {props.newOrder.type === OrderType.Limit ? (
-          <NumberInput value={props.newOrder.limit} onChange={props.onSelectLimit} placeholder={'Limit'} />
+          <NumberInput
+            data-cy={'limitInput'}
+            value={props.newOrder.limit}
+            onChange={props.onSelectLimit}
+            placeholder={'Limit'}
+          />
         ) : null}
         <NumberInput
+          data-cy={'quantityInput'}
           value={props.newOrder.quantity}
           onChange={props.onSelectQuantity}
           placeholder={'Quantity'}
         />
-        <Button type="primary" onClick={props.onSubmitNewOrder} style={{ marginLeft: 20 }}>
+        <Button
+          data-cy="submitOrder"
+          type="primary"
+          onClick={props.onSubmitNewOrder}
+          style={{ marginLeft: 20 }}
+        >
           Submit Order
         </Button>
       </InputContainer>

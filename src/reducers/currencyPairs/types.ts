@@ -3,8 +3,8 @@ export interface CurrencyPair {
   pricePrecision: number;
   initialMargin: string;
   minimumMargin: string;
-  maximumOrderSize: string;
-  minimumOrderSize: string;
+  maximumOrderSize: number;
+  minimumOrderSize: number;
   expiration: string;
   margin: boolean;
 }

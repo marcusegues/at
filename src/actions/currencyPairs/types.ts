@@ -1,9 +1,9 @@
-import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS, REQUEST_FETCH_CURRENCY_PAIRS } from './index';
+import { CurrencyPairDto } from '../../api/currencyPairs/types';
 
-interface ReceiveSuccessCurrencyPairsActionType {
+interface ReceiveSuccessFetchCurrencyPairsActionType {
   type: typeof RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS;
-  payload: { currencyPairs: CurrencyPair[] };
+  payload: { currencyPairs: CurrencyPairDto[] };
 }
 
 interface RequestFetchCurrencyPairsActionType {
@@ -11,5 +11,5 @@ interface RequestFetchCurrencyPairsActionType {
 }
 
 export type CurrencyPairsActionTypes =
-  | ReceiveSuccessCurrencyPairsActionType
+  | ReceiveSuccessFetchCurrencyPairsActionType
   | RequestFetchCurrencyPairsActionType;

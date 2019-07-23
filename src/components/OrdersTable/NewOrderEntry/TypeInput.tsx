@@ -11,9 +11,9 @@ interface Props {
 export const TypeInputInner = ({ onChange, value }: Props) => {
   console.log('Rendering Type input');
   return (
-    <Select style={{ width: 100, margin: 5 }} value={value} onChange={onChange}>
+    <Select data-cy={'orderTypeInput'} style={{ width: 100, margin: 5 }} value={value} onChange={onChange}>
       {(Object.keys(OrderType) as Array<keyof typeof OrderType>).map(type => (
-        <Option key={type} value={OrderType[type]}>
+        <Option data-cy="orderType" key={type} value={OrderType[type]}>
           {type}
         </Option>
       ))}

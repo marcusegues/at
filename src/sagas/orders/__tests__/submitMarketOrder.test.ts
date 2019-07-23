@@ -1,22 +1,14 @@
 import { receiveSuccessSubmitNewOrderAction, requestSubmitNewOrderAction } from '../../../actions/orders';
 import { RequestSubmitNewOrderActionType } from '../../../actions/orders/types';
-import { NewOrderState } from '../../../components/OrdersTable/OrdersTableContainer';
 import { storeOrdersLocalStorage } from '../../../localStorage';
-import { Order, OrderSide, OrderType } from '../../../reducers/orders/types';
+import { Order } from '../../../reducers/orders/types';
 import { getOrdersSelector } from '../../../reducers/selectors';
 import { RootState } from '../../../reducers/types';
 import { recordSaga } from '../../helpers';
 import { MOCK_ID } from '../__mocks__/helpers';
 import helpers from '../helpers';
 import { submitNewOrderSaga } from '../orders';
-
-const newMarketOrderFixture = (props?: Partial<NewOrderState>) => ({
-  pair: 'eurusd',
-  side: OrderSide.Buy,
-  type: OrderType.Market,
-  quantity: 1,
-  ...props,
-});
+import { newMarketOrderFixture } from '../../../tests/fixtures';
 
 const stateWithOrdersFixture = (): Pick<RootState, 'orders'> => ({
   orders: {
@@ -40,7 +32,6 @@ describe('Submitting new market order', () => {
       order: newMarketOrderFixture({ pair: undefined }),
     });
     const dispatched = await recordSaga<Pick<RootState, 'orders'>>(submitNewOrderSaga, getState, action);
-    console.log('STATE', getState());
     expect(dispatched).toEqual([]);
   });
 

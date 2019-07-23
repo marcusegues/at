@@ -8,7 +8,14 @@ export const byId = (state: ByIdState = {}, action: CurrencyPairsActionTypes): B
     switch (action.type) {
       case RECEIVE_SUCCESS_FETCH_CURRENCY_PAIRS: {
         const { currencyPairs } = action.payload;
-        currencyPairs.forEach((cp: any) => (draft[cp.pair] = cp));
+        currencyPairs.forEach(
+          (cp: any) =>
+            (draft[cp.pair] = {
+              ...cp,
+              minimumOrderSize: parseInt(cp.minimumOrderSize, 10),
+              maximumOrderSize: parseInt(cp.maximumOrderSize, 10),
+            })
+        );
       }
     }
   });

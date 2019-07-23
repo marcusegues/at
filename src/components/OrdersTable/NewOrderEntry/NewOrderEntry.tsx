@@ -8,6 +8,8 @@ import { NewOrderState } from '../OrdersTableContainer';
 import { CurrencyPairInput } from './CurrencyPairInput';
 import { SideInput } from './SideInput';
 import { TypeInput } from './TypeInput';
+import { isNewOrderValid } from '../helpers';
+import { currencyPairs } from '../../../reducers/currencyPairs';
 
 const Container = styled.div`
   border: solid 1px rgb(189, 195, 199);
@@ -68,6 +70,7 @@ export const NewOrderEntryInner = (props: Props) => {
         <Button
           data-cy="submitOrder"
           type="primary"
+          disabled={!isNewOrderValid(props.newOrder, props.currencyPairs)}
           onClick={props.onSubmitNewOrder}
           style={{ marginLeft: 20 }}
         >

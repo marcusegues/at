@@ -14,7 +14,7 @@ import { NewOrderEntry } from './NewOrderEntry/NewOrderEntry';
 
 interface StateProps {
   orders: Order[];
-  currencyPairs: () => CurrencyPair[];
+  currencyPairs: CurrencyPair[];
 }
 
 interface DispatchProps {
@@ -114,13 +114,13 @@ class OrdersTableContainerInner extends Component<Props, State> {
   };
 
   public render() {
-    console.log('render', this.props);
+    console.log('Render Orders Table', this.props);
     const { orders, currencyPairs } = this.props;
     return (
       <div style={{ width: '100%', height: 500 }} className="ag-theme-balham">
         <NewOrderEntry
           orderCount={orders.length}
-          currencyPairs={currencyPairs()}
+          currencyPairs={currencyPairs}
           onSelectCurrencyPair={this.onSelectCurrencyPair}
           onSelectSide={this.onSelectSide}
           onSelectType={this.onSelectType}
@@ -137,7 +137,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
 
 const mapStateToProps = (state: RootState) => ({
   orders: getOrdersSelector(state),
-  currencyPairs: () => getCurrencyPairsSelector(state),
+  currencyPairs: getCurrencyPairsSelector(state),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<OrdersActionTypes>) => ({

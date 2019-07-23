@@ -11,6 +11,7 @@ import { Order, OrderSide, OrderType } from '../../reducers/orders/types';
 import { getCurrencyPairsSelector, getOrdersSelector } from '../../reducers/selectors';
 import { RootState } from '../../reducers/types';
 import { NewOrderEntry } from './NewOrderEntry/NewOrderEntry';
+import { OrdersTable } from './OrdersTable';
 
 interface StateProps {
   orders: Order[];
@@ -115,10 +116,10 @@ class OrdersTableContainerInner extends Component<Props, State> {
   };
 
   public render() {
-    console.log('Render Orders Table', this.props);
+    console.log('Render Orders Container', this.props);
     const { orders, currencyPairs } = this.props;
     return (
-      <div style={{ width: '100%', height: 500 }} className="ag-theme-balham">
+      <>
         <NewOrderEntry
           orderCount={orders.length}
           currencyPairs={currencyPairs}
@@ -130,8 +131,8 @@ class OrdersTableContainerInner extends Component<Props, State> {
           newOrder={this.state.newOrder}
           onSubmitNewOrder={this.onSubmitNewOrder}
         />
-        <AgGridReact columnDefs={this.state.columns} rowData={orders} />
-      </div>
+        <OrdersTable columns={this.state.columns} rows={orders} />
+      </>
     );
   }
 }

@@ -8,7 +8,6 @@ import { CurrencyPair } from '../../reducers/currencyPairs/types';
 export const isNewOrderValid = (newOrder: Partial<NewOrderState>, currencyPairs: CurrencyPair[]) => {
   const { pair, side, type, quantity, limit } = newOrder;
   const currencyPair = currencyPairs.find(cp => cp.pair === pair);
-  console.log('ISVALID ', newOrder);
   if (
     (currencyPair &&
       side &&

@@ -7,6 +7,7 @@ import { OrdersActionTypes } from '../../actions/orders/types';
 import { Order } from '../../reducers/orders/types';
 import { RootState } from '../../reducers/types';
 import { OrdersTableContainer } from '../OrdersTable/OrdersTableContainer';
+import styled from 'styled-components';
 
 interface StateProps {
   orders: Order[];
@@ -29,20 +30,20 @@ class DashBoardContainerInner extends Component<Props> {
 
   public render() {
     return (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'column',
-          marginLeft: 20,
-          marginRight: 20,
-          width: 620,
-        }}
-      >
+      <Container>
         <OrdersTableContainer />
-      </div>
+      </Container>
     );
   }
 }
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 620px;
+`;
 
 const mapStateToProps = (state: RootState) => ({});
 

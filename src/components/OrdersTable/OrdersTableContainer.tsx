@@ -70,7 +70,6 @@ class OrdersTableContainerInner extends Component<Props, State> {
   };
 
   public onSelectSide = (side: OrderSide) => {
-    console.log('SIDE', side);
     this.setState(
       produce(draft => {
         draft.newOrder.side = side;
@@ -115,7 +114,6 @@ class OrdersTableContainerInner extends Component<Props, State> {
   };
 
   public render() {
-    console.log('Render Orders Container', this.props);
     const { orders, currencyPairs } = this.props;
     return (
       <>

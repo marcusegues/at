@@ -1,6 +1,4 @@
 import { camelizeKeys } from 'humps';
-import produce from 'immer';
-import { CurrencyPair } from '../../reducers/currencyPairs/types';
 import { CurrencyPairDto } from './types';
 
 class ApiRequestError extends Error {

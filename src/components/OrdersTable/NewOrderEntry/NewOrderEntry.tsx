@@ -39,46 +39,43 @@ interface Props {
   onSubmitNewOrder: () => void;
 }
 
-export const NewOrderEntryInner = (props: Props) => {
-  console.log('Rendering New Order entry', props.newOrder.type === OrderType.Limit);
-  return (
-    <Container>
-      <Title>{`Orders (${props.orderCount})`}</Title>
-      <InputContainer>
-        <CurrencyPairInput
-          value={props.newOrder.pair}
-          onChange={props.onSelectCurrencyPair}
-          currencyPairs={props.currencyPairs}
-        />
-        <SideInput value={props.newOrder.side} onChange={props.onSelectSide} />
-        <TypeInput value={props.newOrder.type} onChange={props.onSelectType} />
-        {props.newOrder.type === OrderType.Limit ? (
-          <NumberInput
-            data-cy={'limitInput'}
-            value={props.newOrder.limit}
-            onChange={props.onSelectLimit}
-            placeholder={'Limit'}
-          />
-        ) : null}
+export const NewOrderEntryInner = (props: Props) => (
+  <Container>
+    <Title>{`Orders (${props.orderCount})`}</Title>
+    <InputContainer>
+      <CurrencyPairInput
+        value={props.newOrder.pair}
+        onChange={props.onSelectCurrencyPair}
+        currencyPairs={props.currencyPairs}
+      />
+      <SideInput value={props.newOrder.side} onChange={props.onSelectSide} />
+      <TypeInput value={props.newOrder.type} onChange={props.onSelectType} />
+      {props.newOrder.type === OrderType.Limit ? (
         <NumberInput
-          data-cy={'quantityInput'}
-          value={props.newOrder.quantity}
-          onChange={props.onSelectQuantity}
-          placeholder={'Quantity'}
+          data-cy={'limitInput'}
+          value={props.newOrder.limit}
+          onChange={props.onSelectLimit}
+          placeholder={'Limit'}
         />
-        <Button
-          data-cy="submitOrder"
-          type="primary"
-          disabled={!isNewOrderValid(props.newOrder, props.currencyPairs)}
-          onClick={props.onSubmitNewOrder}
-          style={{ marginLeft: 20 }}
-        >
-          Submit Order
-        </Button>
-      </InputContainer>
-    </Container>
-  );
-};
+      ) : null}
+      <NumberInput
+        data-cy={'quantityInput'}
+        value={props.newOrder.quantity}
+        onChange={props.onSelectQuantity}
+        placeholder={'Quantity'}
+      />
+      <Button
+        data-cy="submitOrder"
+        type="primary"
+        disabled={!isNewOrderValid(props.newOrder, props.currencyPairs)}
+        onClick={props.onSubmitNewOrder}
+        style={{ marginLeft: 20 }}
+      >
+        Submit Order
+      </Button>
+    </InputContainer>
+  </Container>
+);
 
 // Performance optimization for functional components (analogous to shouldComponentUpdate in class components, or PureComponent)
 export const NewOrderEntry = React.memo(NewOrderEntryInner);

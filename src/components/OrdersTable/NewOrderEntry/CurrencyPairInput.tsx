@@ -9,25 +9,22 @@ interface Props {
   value?: string;
 }
 
-const CurrencyPairInputInner = (props: Props) => {
-  console.log('Render currency pair', props);
-  return (
-    <Select
-      data-cy="currencyPairInput"
-      style={{ width: 100, margin: 5 }}
-      placeholder={'Symbol'}
-      showSearch={true}
-      onChange={props.onChange}
-      value={props.value}
-    >
-      {props.currencyPairs.map(cp => (
-        <Option data-cy="currencyPair" key={cp.pair} value={cp.pair}>
-          {cp.pair}
-        </Option>
-      ))}
-    </Select>
-  );
-};
+const CurrencyPairInputInner = (props: Props) => (
+  <Select
+    data-cy="currencyPairInput"
+    style={{ width: 100, margin: 5 }}
+    placeholder={'Symbol'}
+    showSearch={true}
+    onChange={props.onChange}
+    value={props.value}
+  >
+    {props.currencyPairs.map(cp => (
+      <Option data-cy="currencyPair" key={cp.pair} value={cp.pair}>
+        {cp.pair}
+      </Option>
+    ))}
+  </Select>
+);
 
 // Performance optimization for functional components (analogous to shouldComponentUpdate in class components, or PureComponent)
 export const CurrencyPairInput = React.memo(CurrencyPairInputInner);

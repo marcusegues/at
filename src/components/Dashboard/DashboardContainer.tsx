@@ -1,7 +1,7 @@
 import React, { Component, Dispatch } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import { REQUEST_FETCH_CURRENCY_PAIRS, requestFetchCurrencyPairsAction } from '../../actions/currencyPairs';
+import { requestFetchCurrencyPairsAction } from '../../actions/currencyPairs';
 import { CurrencyPairsActionTypes } from '../../actions/currencyPairs/types';
 import { requestFetchOrdersAction } from '../../actions/orders';
 import { OrdersActionTypes } from '../../actions/orders/types';

@@ -9,20 +9,17 @@ interface Props {
   defaultValue?: number;
 }
 
-const NumberInputInner = (props: Props) => {
-  console.log('Rendering quantity input');
-  return (
-    <InputNumber
-      data-cy={props['data-cy']}
-      style={{ margin: 5 }}
-      value={props.value}
-      min={0}
-      defaultValue={props.defaultValue}
-      onChange={props.onChange}
-      placeholder={props.placeholder}
-    />
-  );
-};
+const NumberInputInner = (props: Props) => (
+  <InputNumber
+    data-cy={props['data-cy']}
+    style={{ margin: 5 }}
+    value={props.value}
+    min={0}
+    defaultValue={props.defaultValue}
+    onChange={props.onChange}
+    placeholder={props.placeholder}
+  />
+);
 
 NumberInputInner.defaultProps = {
   defaultValue: 0,

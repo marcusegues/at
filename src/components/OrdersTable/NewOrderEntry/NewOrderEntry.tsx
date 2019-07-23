@@ -9,7 +9,6 @@ import { CurrencyPairInput } from './CurrencyPairInput';
 import { SideInput } from './SideInput';
 import { TypeInput } from './TypeInput';
 import { isNewOrderValid } from '../helpers';
-import { currencyPairs } from '../../../reducers/currencyPairs';
 
 const Container = styled.div`
   border: solid 1px rgb(189, 195, 199);

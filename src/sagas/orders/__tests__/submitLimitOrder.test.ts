@@ -32,7 +32,6 @@ describe('Submitting new market order', () => {
       order: newLimitOrderFixture({ pair: undefined }),
     });
     const dispatched = await recordSaga<Pick<RootState, 'orders'>>(submitNewOrderSaga, getState, action);
-    console.log('STATE', getState());
     expect(dispatched).toEqual([]);
   });
 

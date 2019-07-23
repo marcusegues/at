@@ -70,6 +70,7 @@ class OrdersTableContainerInner extends Component<Props, State> {
   };
 
   public onSelectSide = (side: OrderSide) => {
+    console.log('SIDE', side);
     this.setState(
       produce(draft => {
         draft.newOrder.side = side;
